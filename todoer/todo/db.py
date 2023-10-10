@@ -14,3 +14,12 @@ def get_db():
                 )
         g.c = g.db.cursor(dictionary = True)
     return g.db, g.c
+
+def close_db(e-None):
+    db = g.pop('db', None)
+
+    if db is not None:
+        db.close()
+
+def init_app(app):
+    app.teardown_appcontext(close_db)
