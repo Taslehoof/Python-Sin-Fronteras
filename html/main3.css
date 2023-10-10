@@ -1,0 +1,43 @@
+body {
+    background-color: #eee;
+}
+
+a{
+    color:hotpink;
+    background-color: #f00;
+    border-color: solid 1px #d00;
+    padding: 15px;
+    margin: 15px;
+    border-radius: 4px;
+}
+
+a:link {
+    color: pink;
+    text-decoration: none;
+}
+
+a:visited{
+    color:white;
+}
+
+a:hover{
+    color: white;
+    background-color: #f55;
+}
+
+a:active{
+    color: black;
+}
+
+p{
+    font-family: "Arial";
+    font-weight: 800;
+    font-style: oblique;
+    font-size: 1.5em;
+    color: #222fff;
+    text-align: justify;
+    text-indent: 40px;
+    line-height: 1.7;
+    word-spacing: 10px;
+    text-shadow: 5px 2px 2px rgba(0,0,0, 0.3);
+}
