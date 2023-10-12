@@ -1,8 +1,8 @@
 instructions = [
     'SET FOREIGN_KEY_CHECKS=0;',
-    'DROP TABLE IF EXIST todo;',
-    'DROP TABLE IF EXIST user;',
-    'SET FOREING_KEY_CHECKS=1;',
+    'DROP TABLE IF EXISTS todo;',
+    'DROP TABLE IF EXISTS user;',
+    'SET FOREIGN_KEY_CHECKS=1;',
     """
         CREATE TABLE user(
             id INT PRIMARY KEY AUTO_INCREMENT,
@@ -13,7 +13,7 @@ instructions = [
     """
         CREATE TABLE todo(
             id INT PRIMARY KEY AUTO_INCREMENT,
-            create_by NOT NULL,
+            created_by INT NOT NULL,
             created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
             description TEXT NOT NULL,
             completed BOOLEAN NOT NULL,
