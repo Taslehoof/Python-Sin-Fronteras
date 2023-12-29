@@ -1,24 +1,24 @@
 import functools
 
 from flask import (
-    Blueprint, flash, g, render_template, request, url_for, sesions
+Blueprint, flash, g, render_template, request, url_for, session, redirect
          )
 
-from werkzeug.secuity import check_password_hash, generate_password_hash
+from werkzeug.security import check_password_hash, generate_password_hash
 
 from todo.db import get_db
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 @bp.route('/register', methods=['GET','POST'])
-def rgister():
+def register():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
         db, c = get_db()
         error = None
         c.execute(
-            "select id from user mhere username = %d"
+            "select id from user mhere username = %s",(username,)
         )
         if not username:
             error = 'Username es requerido'
@@ -40,7 +40,7 @@ def rgister():
         flash(error)
     return render_template('auth/register.html')
 
-@bp.route('/login', methods=['GET','POST'])
+@bp.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         username = request.form['username']
@@ -59,7 +59,7 @@ def login():
 
         if error is None:
             session.clear()
-                session['user_id'] = user['id']
-                return redirect(url_for('index'))
+            session['user_id'] = user['id']
+            return redirect(url_for('index'))
         flash(error)
     return render_template('auth/login.html')
