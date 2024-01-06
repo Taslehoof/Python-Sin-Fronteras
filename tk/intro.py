@@ -5,9 +5,12 @@ root = Tk()
 root.title('hola mundo')
 root.geometry('500x500')
 
-label = Label(root, text="Hola mundo mi primera etiqueta")
-#Label(root, text="Hola mundo mi primera etiqueta").pack()
+l1 = Label(root, text="Hola Mundo! primera etiqueta")
+l2 = Label(root, text="Chao Mundo! segunda etiqueta")
+l3 = Label(root, text='                         ')
 
-label.pack()
+l1.grid(row=0, column=0)
+l3.grid(row=1, column=1)
+l2.grid(row=10, column=10)
 
 root.mainloop()
