@@ -6,10 +6,12 @@ import sqlite3
 root = Tk()
 root.title('Hola Mundo: CRM')
 
+#creacion de la conexion 
 conn = sqlite3.connect('crm.db')
 
 c = conn.cursor()
 
+#defino como va a ser la tabla para poder despues persistir los datos
 c.execute("""
         CREATE TABLE if not exists cliente(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -19,12 +21,24 @@ c.execute("""
         );
 """)
 
+#Con esta funcion renderizo constantemente los clientes en pantlla para que me refresque el contenido
+def render_clientes():
+    rows = c.execute("SELECT * FROM cliente").fetchall()
+
+    tree.delete(*tree.get_children())
+
+    for row in rows:
+        tree.insert('', END, row[0], values=(row[1], row[2], row[3]))
+
+#Aca se define los metodos de la funcio para poder hacer la insercion en la BDD
 def insertar(cliente):
     c.execute("""
             INSERT INTO cliente(nombre, telefono, empresa) VALUES (?, ?, ?)
             """, (cliente['nombre'], cliente['telefono'], cliente['empresa']))
     conn.commit()
+    render_clientes()
 
+#Pasos previos y validaciones para cuando hago la carga de datos
 def nuevo_cliente():
     def guardar():
         if not nombre.get():
@@ -69,10 +83,21 @@ def nuevo_cliente():
     guardar.grid(row=3, column=1)
 
     top.mainloop()
-
+    
+#Para poder buscar en la BDD y que me elimine los datos que seleccione y no otros
 def eliminar_cliente():
-    pass
+    id = tree.selection()[0]
 
+    cliente = c.execute("SELECT * FROM cliente WHERE id = ?",(id, )).fetchone()
+    respuesta = messagebox.askokcancel('Seguro?','Estas seguro de querer eliminar el cliente '+ cliente[1] +' ?')
+    if respuesta:
+        c.execute("DELETE FROM cliente WHERE id = ?", (id, ))
+        conn.commit()
+        render_clientes()
+    else:
+        pass
+
+#Aca hago la definicion de todo el entorno con el que se inicia la App
 btn = Button(root, text='Nuevo Cliente', command=nuevo_cliente)
 btn.grid(column=0, row=0)
 
@@ -91,5 +116,7 @@ tree.heading('Nombre', text='Nombre')
 tree.heading('Telefono', text='Telefono')
 tree.heading('Empresa', text='Empresa')
 tree.grid(column=0, row=1, columnspan=2)
+
+render_clientes()
 
 root.mainloop()
