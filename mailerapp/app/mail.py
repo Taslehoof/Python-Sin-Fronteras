@@ -11,7 +11,7 @@ bp = Blueprint('mail', __name__, url_prefix="/")
 def index():
     db, c = get_db()
 
-    c.execute("SEELCT * FROM email")
+    c.execute(" SELECT * FROM email")
     mails = c.fetchall()
 
     return render_template('mails/index.html', mails=mails)
@@ -33,7 +33,12 @@ def create():
             errors.append('Contenido es obligatorio')
 
         if len(errors) == 0:
-            pass
+            db, c =get_db()
+            c.execute("INSERT INTO email(email, subject, content) VALUES (%s, %s, %s), (email, subject, content)")
+            db.commit()
+            
+            return redirect(url_for('mail.index'))
+            
         else:
             for error in errors:
                 flash(error)

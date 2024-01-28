@@ -5,11 +5,12 @@
 {% endblock %}
 
 {% block action %}
-    <a class="button" href='{{ url_for('mail.create') }}'>Nuevo correo</a>
+    <a class="button" href="{{ url_for('mail.create') }}">Nuevo correo</a>
 {% endblock %}
+
 {% block content %}
 <ul>
-    {%for mail in mails%}
+    {% for mail in mails %}
     <li class='mail'>
         <div>
             <span class='email'>{{ mail['email'] }}</span>
