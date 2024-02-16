@@ -1,3 +1,7 @@
+html {
+    font-family: 'Rufina', sans-serif;
+}
+
 body {
     background-color: #efefef;
     margin: 0;
@@ -91,4 +95,43 @@ html body nav ul li a {
 
 a.btn {
     color: #fff;    
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+}
+
+.content {
+    width: 1200px;
+}
+
+.row {
+    display: flex;
+    flex-dierction: row;
+}
+
+.orange {
+    color: #F84F07;
+}
+
+.padded {
+    padding: 20px 30px;
+}
+
+.vert-pad {
+    padding: 20px 0;
+}
+
+.card {
+    background-color: #fff;
+    box-shadow: 0 1px 2px #ddd;
+    border: solid 1px #ddd;
+    border-radius: 5px;
+    padding: 20px 30px;
+}
+
+.third {
+    width: 360px;
+    margin: 20px;
 }
