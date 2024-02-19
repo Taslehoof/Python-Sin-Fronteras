@@ -135,3 +135,53 @@ a.btn {
     width: 360px;
     margin: 20px;
 }
+
+.contact-form input {
+    font-family: 'Rubik', sans-serif;
+    border: none;
+    height: 30px;
+    padding: 5px 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    width: calc(100% - 20px);
+}
+
+.contact-form textarea {
+    font-family: 'Rubik', sans-serif;
+    border: none;
+    height: 100px;
+    padding: 15px 10px;
+    resize: none;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    width: calc(100% - 20px);
+}
+
+.full-width {
+    width: 100%;
+}
+
+.footer {
+   padding: 80px 0 0 0;
+   background-color: #333;
+   color: #fff;
+}
+
+.social-links {
+    margin-top: 20px;
+    margin-bottom: 40px;  
+} 
+
+.social-links a {
+    margin: 0 10px;
+}
+
+.social {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.white-bg {
+    background-color: #fff;
+}
